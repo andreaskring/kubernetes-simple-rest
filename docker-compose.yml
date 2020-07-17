@@ -1,7 +1,8 @@
-version: 3.5
+version: "3.5"
 services:
   postgres:
     image: postgres
+    container_name: postgres-keycloak
     ports:
       - 5432:5432
     environment:
@@ -10,11 +11,18 @@ services:
       POSTGRES_PASSWORD: keycloak
   keycloak:
     image: quay.io/keycloak/keycloak
+    container_name: keycloak
     ports:
       - 8080:8080
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_LOGLEVEL: DEBUG
       DB_USER: keycloak
       DB_PASSWORD: keycloak
       DB_ADDR: postgres
+#  flask:
+#    image: akring1729/flask-keycloak
+#    container_name: flask
+#    ports:
+#      - 5000:5000

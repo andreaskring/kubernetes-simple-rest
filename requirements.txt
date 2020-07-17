@@ -1,2 +1,4 @@
 flask
-
+flask_oidc
+requests
+oauth2client

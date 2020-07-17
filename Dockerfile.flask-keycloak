@@ -1,0 +1,14 @@
+FROM python:3.8-slim-buster
+
+WORKDIR /app
+
+COPY ./requirements.txt /app/requirements.txt
+COPY ./simple-keycloak-app.py /app/simple-keycloak-app.py
+COPY ./client_secrets.json /app/client_secrets.json
+
+RUN pip install -r requirements.txt
+
+# Create a folder for storage
+RUN mkdir /data
+
+ENTRYPOINT ["python", "simple-keycloak-app.py"]
